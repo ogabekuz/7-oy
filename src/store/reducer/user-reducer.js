@@ -41,17 +41,8 @@ const user = createSlice({
     },
 
     deleteUser: (state, action) => {
-      const userIndex = state.userList.findIndex(
-        (item) => item?.id === action?.payload
-      );
-      if (userIndex !== -1) {
-        state.userList.splice(userIndex, 1);
-        return {
-          ...state,
-          count: state.count - 1,
-          userList: state.userList,
-        };
-      }
+      state.userList = state.userList.filter(item => item.id !== action.payload);
+      state.count = state.userList.length;
       return state;
     },
 
